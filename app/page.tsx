@@ -1,4 +1,5 @@
-import { Monitor, Calendar, Check, Star } from "lucide-react";
+import { Monitor, Calendar, Check, Star, Rocket } from "lucide-react";
+import Link from "next/link";
 
 const testimonials = [
   {
@@ -37,9 +38,12 @@ export default function Home() {
       <section className="bg-gradient-to-b from-white via-white to-[#e8ecf1]">
         <div className="mx-auto max-w-4xl px-6 pb-28 pt-14 text-center sm:pb-36 sm:pt-16">
           {/* Logo */}
-          <p className="mb-10 text-2xl font-bold lowercase tracking-wide text-text-primary">
-            logo
-          </p>
+          <div className="mb-10 flex items-center justify-center gap-2">
+            <Rocket className="h-6 w-6 text-text-primary" />
+            <span className="text-2xl font-bold tracking-wide text-text-primary">
+              WebZaTýždeň
+            </span>
+          </div>
 
           {/* Trust Badges */}
           <div className="mb-12 flex items-center justify-center gap-10 text-base font-semibold text-text-secondary">
@@ -65,12 +69,12 @@ export default function Home() {
           </p>
 
           {/* CTA Button */}
-          <a
-            href="#cta"
+          <Link
+            href="/dotaznik"
             className="inline-block rounded-full bg-primary px-16 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
             Chcem stretnutie
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -106,12 +110,12 @@ export default function Home() {
 
           {/* Bottom CTA */}
           <div className="mt-20 text-center">
-            <a
-              href="#cta"
+            <Link
+              href="/dotaznik"
               className="inline-block rounded-full bg-primary px-16 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
             >
               Chcem stretnutie
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -184,12 +188,12 @@ export default function Home() {
           </div>
 
           {/* CTA Button */}
-          <a
-            href="#"
+          <Link
+            href="/dotaznik"
             className="inline-block rounded-full bg-primary px-20 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
             Chcem stretnutie
-          </a>
+          </Link>
 
           {/* Trust Indicators */}
           <div className="mt-12 flex flex-col items-center gap-5 sm:flex-row sm:justify-center sm:gap-8">
@@ -227,8 +231,8 @@ export default function Home() {
       {/* ===== FOOTER ===== */}
       <footer className="bg-bg-white px-6 pb-8 pt-12">
         <div className="mx-auto flex max-w-5xl items-center justify-center gap-12 text-sm text-text-muted">
-          <span>GDPR</span>
-          <span>Názov 2025</span>
+          <Link href="/gdpr" className="hover:underline">GDPR</Link>
+          <span>TOMAR Group s.r.o. 2025</span>
         </div>
       </footer>
     </main>
