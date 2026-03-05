@@ -1,4 +1,5 @@
 import { Monitor, Calendar, Check, Star, Rocket } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const testimonials = [
@@ -203,10 +204,14 @@ export default function Home() {
             {/* Overlapping Avatars */}
             <div className="flex items-center">
               <div className="flex -space-x-3">
-                {[...Array(4)].map((_, i) => (
-                  <div
+                {["/avatars/person1.jpg", "/avatars/person2.jpg", "/avatars/person3.jpg", "/avatars/person4.jpg"].map((src, i) => (
+                  <Image
                     key={i}
-                    className="h-10 w-10 rounded-full border-2 border-[#B285E1]/40 bg-gray-400"
+                    src={src}
+                    alt="Spokojný klient"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full border-2 border-[#B285E1]/40 object-cover"
                   />
                 ))}
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#B285E1]/40 bg-gray-700 text-xs font-bold text-white">
