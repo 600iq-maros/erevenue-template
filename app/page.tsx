@@ -12,16 +12,6 @@ const testimonials = [
     name: "Meno Priezvisko",
     role: "Povolanie",
   },
-  {
-    text: "Ako sme klientovi pomohli prekonať jeho problém + výsledky. Cieľom je aby sa návštevník webu s ním stotožnil a videl, že rovnaký problém ako má on sme už pomohli niekomu jemu podobnému vyriešiť",
-    name: "Meno Priezvisko",
-    role: "Povolanie",
-  },
-  {
-    text: "Ako sme klientovi pomohli prekonať jeho problém + výsledky. Cieľom je aby sa návštevník webu s ním stotožnil a videl, že rovnaký problém ako má on sme už pomohli niekomu jemu podobnému vyriešiť",
-    name: "Meno Priezvisko",
-    role: "Povolanie",
-  },
 ];
 
 const features = [
@@ -35,7 +25,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-bg-white">
       {/* ===== SECTION 1: HERO ===== */}
-      <section className="bg-gradient-to-b from-white via-white to-[#e8ecf1]">
+      <section className="bg-gradient-to-b from-white via-white to-[#EFE1F9]">
         <div className="mx-auto max-w-4xl px-6 pb-28 pt-14 text-center sm:pb-36 sm:pt-16">
           {/* Logo */}
           <div className="mb-10 flex items-center justify-center gap-2">
@@ -69,12 +59,12 @@ export default function Home() {
           </p>
 
           {/* CTA Button */}
-          <Link
-            href="/dotaznik"
+          <a
+            href="#cta"
             className="inline-block rounded-full bg-primary px-16 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
             Chcem stretnutie
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -110,12 +100,12 @@ export default function Home() {
 
           {/* Bottom CTA */}
           <div className="mt-20 text-center">
-            <Link
-              href="/dotaznik"
+            <a
+              href="#cta"
               className="inline-block rounded-full bg-primary px-16 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
             >
               Chcem stretnutie
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -159,20 +149,20 @@ export default function Home() {
       <section id="cta" className="bg-bg-white px-6 py-20 sm:py-28">
         <div className="mx-auto max-w-5xl rounded-[3rem] bg-gradient-to-b from-cta-from to-cta-to px-8 py-16 text-center sm:px-16 sm:py-20">
           {/* Headline */}
-          <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
+          <h2 className="mb-4 text-3xl font-bold text-text-primary sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
             Prvý krok je najdôležitejší.
             <br />
             Rezervujte si stretnutie:
           </h2>
 
           {/* Subtext */}
-          <p className="mb-10 text-lg text-white/80">
+          <p className="mb-10 text-lg text-text-secondary">
             Kliknite na tlačítko a objednajte sa na nezáväznú konzultáciu.
           </p>
 
           {/* Scarcity Indicator */}
           <div className="mb-10 flex items-center justify-center gap-2.5">
-            <span className="mr-3 text-sm font-medium text-white">
+            <span className="mr-3 text-sm font-medium text-text-primary">
               Len pár miest týždenne
             </span>
             {[...Array(5)].map((_, i) => (
@@ -205,7 +195,7 @@ export default function Home() {
                   className="h-6 w-6 fill-accent-yellow text-accent-yellow"
                 />
               ))}
-              <span className="ml-2 text-base font-semibold text-white">
+              <span className="ml-2 text-base font-semibold text-text-primary">
                 4.9/5
               </span>
             </div>
@@ -216,10 +206,10 @@ export default function Home() {
                 {[...Array(4)].map((_, i) => (
                   <div
                     key={i}
-                    className="h-10 w-10 rounded-full border-2 border-white/40 bg-gray-400"
+                    className="h-10 w-10 rounded-full border-2 border-[#B285E1]/40 bg-gray-400"
                   />
                 ))}
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/40 bg-gray-700 text-xs font-bold text-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#B285E1]/40 bg-gray-700 text-xs font-bold text-white">
                   +76
                 </div>
               </div>
@@ -232,7 +222,7 @@ export default function Home() {
       <footer className="bg-bg-white px-6 pb-8 pt-12">
         <div className="mx-auto flex max-w-5xl items-center justify-center gap-12 text-sm text-text-muted">
           <Link href="/gdpr" className="hover:underline">GDPR</Link>
-          <span>TOMAR Group s.r.o. 2025</span>
+          <span>TOMAR Group s.r.o. 2026</span>
         </div>
       </footer>
     </main>

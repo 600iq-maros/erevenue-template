@@ -42,11 +42,29 @@ export default function DotaznikPage() {
 
   const canProceed = formData[step.field].trim() !== "";
 
-  const handleNext = () => {
-    if (!canProceed) return;
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleNext = async () => {
+    if (!canProceed || submitting) return;
 
     if (isLastStep) {
-      router.push("/dotaznik-odoslany");
+      setSubmitting(true);
+      try {
+        const res = await fetch("/api/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to send");
+        }
+
+        router.push("/dotaznik-odoslany");
+      } catch {
+        alert("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
+        setSubmitting(false);
+      }
     } else {
       setCurrentStep((prev) => prev + 1);
     }
@@ -65,7 +83,7 @@ export default function DotaznikPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-[#f0f4f8]">
+    <main className="flex min-h-screen flex-col bg-[#EFE1F9]">
       {/* Content */}
       <div className="flex flex-1 flex-col px-6 pb-24 pt-12 sm:px-12 sm:pt-16">
         <div className="mx-auto w-full max-w-3xl">
@@ -108,7 +126,7 @@ export default function DotaznikPage() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#f0f4f8] px-6 py-6">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#EFE1F9] px-6 py-6">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           {/* Step Indicator */}
           <span className="text-sm text-text-muted">
@@ -133,14 +151,14 @@ export default function DotaznikPage() {
             {/* Next / Submit Button */}
             <button
               onClick={handleNext}
-              disabled={!canProceed}
+              disabled={!canProceed || submitting}
               className={`flex items-center gap-2 rounded-full px-8 py-3 text-base font-semibold text-white transition-all ${
-                canProceed
+                canProceed && !submitting
                   ? "bg-primary hover:scale-105"
                   : "cursor-not-allowed bg-gray-300"
               }`}
             >
-              {isLastStep ? "Odoslať" : "Ďalej"}
+              {submitting ? "Odosiela sa..." : isLastStep ? "Odoslať" : "Ďalej"}
               {!isLastStep && <ChevronRight className="h-4 w-4" />}
             </button>
           </div>

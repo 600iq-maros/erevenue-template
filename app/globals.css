@@ -15,8 +15,8 @@
   --bg-card: #f3f4f6;
 
   /* CTA gradient (bottom section) */
-  --cta-gradient-from: #94a3b8; /* slate-400 */
-  --cta-gradient-to: #64748b;   /* slate-500 */
+  --cta-gradient-from: #EFE1F9;
+  --cta-gradient-to: #B285E1;
 
   /* Text */
   --text-primary: #111827;
