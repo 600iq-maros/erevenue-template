@@ -1,41 +1,8 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-async function sendLeadWebhook(data: {
-  email: string;
-  name: string;
-  phone: string;
-}) {
-  const webhookUrl = process.env.WEBHOOK_URL;
-  const projectId = process.env.PROJECT_ID;
-
-  if (!webhookUrl || !projectId) return;
-
-  try {
-    await fetch(webhookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.WEBHOOK_SECRET ?? ""}`,
-      },
-      body: JSON.stringify({
-        projectId,
-        lead: {
-          email: data.email,
-          name: data.name,
-          phone: data.phone,
-          source: process.env.VERCEL_URL ?? "unknown",
-          createdAt: new Date().toISOString(),
-        },
-      }),
-    });
-  } catch (err) {
-    // Don't block the main flow if webhook fails
-    console.error("Webhook error:", err);
-  }
-}
 
 export async function POST(request: Request) {
   try {
@@ -46,6 +13,24 @@ export async function POST(request: Request) {
         { error: "Všetky polia sú povinné." },
         { status: 400 }
       );
+    }
+
+    // Save lead directly to Supabase (shared DB with klienti)
+    const projectId = process.env.PROJECT_ID;
+    if (projectId) {
+      try {
+        await prisma.lead.create({
+          data: {
+            name,
+            email,
+            phone,
+            sourcePage: process.env.VERCEL_URL ?? "unknown",
+            projectId,
+          },
+        });
+      } catch (err) {
+        console.error("Failed to save lead to database:", err);
+      }
     }
 
     // Send notification to the business
@@ -74,9 +59,6 @@ export async function POST(request: Request) {
         <p>S pozdravom,<br/>Tím WebZaTýždeň</p>
       `,
     });
-
-    // Send lead to klienti dashboard via webhook
-    await sendLeadWebhook({ email, name, phone });
 
     return NextResponse.json({ success: true });
   } catch (error) {
