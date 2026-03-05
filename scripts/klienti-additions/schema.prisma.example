@@ -1,0 +1,26 @@
+// Add these models to your existing Prisma schema in klienti.webzatyzden.sk
+
+model Project {
+  id            String   @id @default(cuid())
+  name          String
+  domain        String?
+  vercelId      String?  @unique
+  webhookSecret String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  leads         Lead[]
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  source    String?
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([projectId])
+  @@index([createdAt])
+}
