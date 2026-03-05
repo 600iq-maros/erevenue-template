@@ -83,7 +83,7 @@ export default function DotaznikPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-[#f0f4f8]">
+    <main className="flex min-h-screen flex-col bg-[#EFE1F9]">
       {/* Content */}
       <div className="flex flex-1 flex-col px-6 pb-24 pt-12 sm:px-12 sm:pt-16">
         <div className="mx-auto w-full max-w-3xl">
@@ -126,7 +126,7 @@ export default function DotaznikPage() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#f0f4f8] px-6 py-6">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#EFE1F9] px-6 py-6">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           {/* Step Indicator */}
           <span className="text-sm text-text-muted">
