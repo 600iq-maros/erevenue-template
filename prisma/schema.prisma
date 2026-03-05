@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Only the models this template needs to write to.
+// The full schema lives in web-factory (klienti) — these must stay in sync.
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  WON
+  LOST
+}
+
+model Lead {
+  id           String     @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  message      String?    @db.Text
+  sourcePage   String?
+  sourceForm   String?
+  ipAddress    String?
+  city         String?
+  country      String?
+  status       LeadStatus @default(NEW)
+  tags         String[]   @default([])
+  followUpDate DateTime?
+  projectId    String
+  notes        LeadNote[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model LeadNote {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  type      String   @default("note")
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  authorId  String?
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+}

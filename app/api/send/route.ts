@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,6 +13,24 @@ export async function POST(request: Request) {
         { error: "Všetky polia sú povinné." },
         { status: 400 }
       );
+    }
+
+    // Save lead directly to Supabase (shared DB with klienti)
+    const projectId = process.env.PROJECT_ID;
+    if (projectId) {
+      try {
+        await prisma.lead.create({
+          data: {
+            name,
+            email,
+            phone,
+            sourcePage: process.env.VERCEL_URL ?? "unknown",
+            projectId,
+          },
+        });
+      } catch (err) {
+        console.error("Failed to save lead to database:", err);
+      }
     }
 
     // Send notification to the business
