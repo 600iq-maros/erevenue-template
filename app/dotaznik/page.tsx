@@ -42,11 +42,29 @@ export default function DotaznikPage() {
 
   const canProceed = formData[step.field].trim() !== "";
 
-  const handleNext = () => {
-    if (!canProceed) return;
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleNext = async () => {
+    if (!canProceed || submitting) return;
 
     if (isLastStep) {
-      router.push("/dotaznik-odoslany");
+      setSubmitting(true);
+      try {
+        const res = await fetch("/api/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to send");
+        }
+
+        router.push("/dotaznik-odoslany");
+      } catch {
+        alert("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
+        setSubmitting(false);
+      }
     } else {
       setCurrentStep((prev) => prev + 1);
     }
@@ -133,14 +151,14 @@ export default function DotaznikPage() {
             {/* Next / Submit Button */}
             <button
               onClick={handleNext}
-              disabled={!canProceed}
+              disabled={!canProceed || submitting}
               className={`flex items-center gap-2 rounded-full px-8 py-3 text-base font-semibold text-white transition-all ${
-                canProceed
+                canProceed && !submitting
                   ? "bg-primary hover:scale-105"
                   : "cursor-not-allowed bg-gray-300"
               }`}
             >
-              {isLastStep ? "Odoslať" : "Ďalej"}
+              {submitting ? "Odosiela sa..." : isLastStep ? "Odoslať" : "Ďalej"}
               {!isLastStep && <ChevronRight className="h-4 w-4" />}
             </button>
           </div>

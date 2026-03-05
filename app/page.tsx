@@ -69,12 +69,12 @@ export default function Home() {
           </p>
 
           {/* CTA Button */}
-          <Link
-            href="/dotaznik"
+          <a
+            href="#cta"
             className="inline-block rounded-full bg-primary px-16 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
             Chcem stretnutie
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -110,12 +110,12 @@ export default function Home() {
 
           {/* Bottom CTA */}
           <div className="mt-20 text-center">
-            <Link
-              href="/dotaznik"
+            <a
+              href="#cta"
               className="inline-block rounded-full bg-primary px-16 py-5 text-lg font-semibold text-primary-foreground transition-transform hover:scale-105"
             >
               Chcem stretnutie
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -232,7 +232,7 @@ export default function Home() {
       <footer className="bg-bg-white px-6 pb-8 pt-12">
         <div className="mx-auto flex max-w-5xl items-center justify-center gap-12 text-sm text-text-muted">
           <Link href="/gdpr" className="hover:underline">GDPR</Link>
-          <span>TOMAR Group s.r.o. 2025</span>
+          <span>TOMAR Group s.r.o. 2026</span>
         </div>
       </footer>
     </main>
