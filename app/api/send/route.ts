@@ -3,6 +3,40 @@ import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+async function sendLeadWebhook(data: {
+  email: string;
+  name: string;
+  phone: string;
+}) {
+  const webhookUrl = process.env.WEBHOOK_URL;
+  const projectId = process.env.PROJECT_ID;
+
+  if (!webhookUrl || !projectId) return;
+
+  try {
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.WEBHOOK_SECRET ?? ""}`,
+      },
+      body: JSON.stringify({
+        projectId,
+        lead: {
+          email: data.email,
+          name: data.name,
+          phone: data.phone,
+          source: process.env.VERCEL_URL ?? "unknown",
+          createdAt: new Date().toISOString(),
+        },
+      }),
+    });
+  } catch (err) {
+    // Don't block the main flow if webhook fails
+    console.error("Webhook error:", err);
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const { email, name, phone } = await request.json();
@@ -40,6 +74,9 @@ export async function POST(request: Request) {
         <p>S pozdravom,<br/>Tím WebZaTýždeň</p>
       `,
     });
+
+    // Send lead to klienti dashboard via webhook
+    await sendLeadWebhook({ email, name, phone });
 
     return NextResponse.json({ success: true });
   } catch (error) {
