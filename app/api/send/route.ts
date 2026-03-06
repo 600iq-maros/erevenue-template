@@ -1,6 +1,5 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   try {
@@ -19,6 +18,7 @@ export async function POST(request: Request) {
     const projectId = process.env.PROJECT_ID;
     if (projectId) {
       try {
+        const { prisma } = await import("@/lib/prisma");
         await prisma.lead.create({
           data: {
             name,
