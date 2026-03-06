@@ -65,10 +65,19 @@ The form pages use hardcoded `bg-[#EFE1F9]` and gradient colors.
 Uses `lucide-react` icons. Current icons: `Rocket` (logo), `Monitor`, `Calendar`, `Check`, `Star`, `ChevronLeft`, `ChevronRight`.
 
 ## Environment Variables
-- `RESEND_API_KEY` — Email service API key
+- `RESEND_API_KEY` — Email service API key (required for emails)
+- `SENDER_DOMAIN` — Verified domain in Resend for sending emails (e.g. `webzatyzden.sk`). Falls back to `resend.dev` (test only)
+- `NOTIFICATION_EMAIL` — Where lead notifications are sent (default: `info@webzatyzden.sk`)
 - `DATABASE_URL` — Supabase pooled connection string
 - `DIRECT_URL` — Supabase direct connection string
 - `PROJECT_ID` — Unique project identifier for lead isolation
+
+### Email Setup
+The app sends two branded HTML emails on form submission:
+1. **Lead notification** → to `NOTIFICATION_EMAIL` with lead details + quick call button
+2. **Client confirmation** → to the user with thank-you message + next steps
+
+To send real emails (not just test), verify your domain in Resend and set `SENDER_DOMAIN`.
 
 ## Tech Stack
 - Next.js 16 (App Router, Turbopack)
