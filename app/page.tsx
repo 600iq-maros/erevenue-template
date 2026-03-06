@@ -26,7 +26,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-bg-white">
       {/* ===== SECTION 1: HERO ===== */}
-      <section className="bg-gradient-to-b from-white via-white to-[#EFE1F9]">
+      <section className="relative overflow-hidden bg-white">
+        {/* Purple glow effect */}
+        <div className="pointer-events-none absolute -bottom-20 left-1/2 h-[60%] w-[80%] -translate-x-1/2 rounded-[50%] bg-[#C9A0E8]/30 blur-[120px]" />
         <div className="mx-auto max-w-4xl px-6 pb-28 pt-14 text-center sm:pb-36 sm:pt-16">
           {/* Logo */}
           <div className="mb-10 flex items-center justify-center gap-2">
