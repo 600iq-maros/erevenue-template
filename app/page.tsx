@@ -47,7 +47,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-white">
         {/* Purple glow effect */}
         <div className="pointer-events-none absolute bottom-0 left-0 h-[40%] w-full bg-gradient-to-t from-[#7B4BA8]/40 via-[#C9A0E8]/20 to-transparent" />
-        <div className="mx-auto max-w-4xl px-6 pb-28 pt-14 text-center sm:pb-36 sm:pt-16">
+        <div className="mx-auto max-w-5xl px-6 pb-28 pt-14 text-center sm:pb-36 sm:pt-16">
           {/* Logo */}
           <div className="mb-10 flex items-center justify-center gap-2">
             <Rocket className="h-6 w-6 text-text-primary" />
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="mx-auto mb-6 max-w-3xl text-4xl font-extrabold leading-tight text-text-primary sm:text-5xl lg:text-[3.5rem] lg:leading-[1.15]">
+          <h1 className="mb-6 text-4xl font-extrabold leading-tight text-text-primary sm:text-5xl lg:text-[3.5rem] lg:leading-[1.15]">
             Získajte kompletnú webstránku
             <br />
             za 7 dní vďaka našemu
