@@ -171,7 +171,8 @@ export default function Home() {
               >
                 {/* Icon */}
                 <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-[#EFE1F9]">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={feature.icon}
                     alt={feature.title}
                     width={40}
