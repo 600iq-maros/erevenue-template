@@ -2,11 +2,11 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const { email, name, phone } = await request.json();
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     if (!email || !name || !phone) {
       return NextResponse.json(
