@@ -4,22 +4,40 @@ import Link from "next/link";
 
 const testimonials = [
   {
-    text: "Ako sme klientovi pomohli prekonať jeho problém + výsledky. Cieľom je aby sa návštevník webu s ním stotožnil a videl, že rovnaký problém ako má on sme už pomohli niekomu jemu podobnému vyriešiť",
-    name: "Meno Priezvisko",
-    role: "Povolanie",
+    text: "Dlho som hľadal niekoho, kto mi spraví web bez zbytočných rečí. Maroš a Tomáš to zvládli za pár dní – profesionálny dizajn, kontaktný formulár aj GDPR. Konečne mám web, za ktorý sa nehanbím poslať zákazníkom.",
+    name: "Peter Kováč",
+    role: "Majiteľ autoservisu",
+    avatar: "/avatars/person2.jpg",
   },
   {
-    text: "Ako sme klientovi pomohli prekonať jeho problém + výsledky. Cieľom je aby sa návštevník webu s ním stotožnil a videl, že rovnaký problém ako má on sme už pomohli niekomu jemu podobnému vyriešiť",
-    name: "Meno Priezvisko",
-    role: "Povolanie",
+    text: "Predtým som mala web, ktorý vyzeral ako z roku 2010. Po spolupráci s WebZaTýždeň sa mi ozvali prví noví klienti už týždeň po spustení. Navyše mi poslali video-návod, takže si viem sama meniť texty a fotky.",
+    name: "Jana Nováková",
+    role: "Kozmetička",
+    avatar: "/avatars/person3.jpg",
   },
 ];
 
 const features = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor lorem ac eros tristique fermentum.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor lorem ac eros tristique fermentum.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor lorem ac eros tristique fermentum.",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor lorem ac eros tristique fermentum.",
+  {
+    title: "100 % vlastníctvo webu a domény",
+    text: "Žiadne skryté prenájmy ani držanie vás v šachu. Web je od prvého dňa váš majetok.",
+    icon: "/icons/vault.svg",
+  },
+  {
+    title: "Bezpečnosť a právna ochrana",
+    text: "Nasadený SSL certifikát (zelený zámoček) a pripravená základná lišta pre GDPR/Cookies, aby ste sa vyhli zbytočným pokutám.",
+    icon: "/icons/shield-check.svg",
+  },
+  {
+    title: "Filter na zlých klientov",
+    text: "Nasadený a otestovaný kontaktný formulár tak, aby ste z návštevníkov mohli okamžite budovať databázu potenciálnych zákazníkov.",
+    icon: "/icons/funnel.svg",
+  },
+  {
+    title: "Video-manuál na mieru",
+    text: "Krátke video, kde vám ukážeme, ako si viete upraviť detaily web stránky, ako pridať fotky či referencie – bez toho, aby ste nám za zmeny platili.",
+    icon: "/icons/camera.svg",
+  },
 ];
 
 export default function Home() {
@@ -52,13 +70,12 @@ export default function Home() {
 
           {/* Main Headline */}
           <h1 className="mx-auto mb-6 max-w-3xl text-4xl font-extrabold leading-tight text-text-primary sm:text-5xl lg:text-[3.5rem] lg:leading-[1.15]">
-            Získajte [vysnívaný výsledok] za [časový úsek] vďaka [unikátna
-            metóda]
+            Získajte kompletnú webstránku za 7 dní vďaka našemu systému ziskových webov
           </h1>
 
           {/* Subheadline */}
           <p className="mx-auto mb-14 max-w-xl text-lg text-text-secondary">
-            Bez [strach / nepríjemná vec, ktorej sa klienti obávajú.]
+            Bez pocitu, že vám konkurencia s lepším webom kradne zákazníkov.
           </p>
 
           {/* CTA Button */}
@@ -76,7 +93,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           {/* Section Title */}
           <h2 className="mb-16 text-center text-3xl font-bold text-text-primary sm:text-4xl lg:text-5xl">
-            Povedali o mne 👇
+            Povedali o nás 👇
           </h2>
 
           {/* Testimonial Grid */}
@@ -91,7 +108,13 @@ export default function Home() {
                 </div>
                 {/* Author Info */}
                 <div className="mt-8 flex items-center gap-4">
-                  <div className="h-12 w-12 shrink-0 rounded-full bg-gray-300" />
+                  <Image
+                    src={t.avatar}
+                    alt={t.name}
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 shrink-0 rounded-full object-cover"
+                  />
                   <div>
                     <p className="font-bold text-text-primary">{t.name}</p>
                     <p className="text-sm text-text-muted">{t.role}</p>
@@ -116,31 +139,52 @@ export default function Home() {
       {/* ===== SECTION 3: ABOUT / FEATURES SPLIT ===== */}
       <section className="bg-bg-light px-6 py-20 sm:py-28">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[9fr_11fr]">
-          {/* Left Column — Profile Placeholder */}
-          <div className="relative flex min-h-[600px] items-start rounded-3xl bg-gray-300 p-10">
-            <h3 className="text-4xl font-bold leading-tight text-white">
-              Meno
-              <br />
-              Priezvisko
-            </h3>
+          {/* Left Column — Profile Photo */}
+          <div className="relative min-h-[600px] overflow-hidden rounded-3xl">
+            <Image
+              src="/avatars/maros-tomas.webp"
+              alt="Maroš a Tomáš — WebZaTýždeň"
+              fill
+              className="object-cover object-top"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-10 pt-20">
+              <h3 className="text-4xl font-bold leading-tight text-white">
+                Maroš
+                <br />
+                &amp; Tomáš
+              </h3>
+            </div>
           </div>
 
           {/* Right Column — Features List */}
           <div className="flex flex-col gap-5">
-            {features.map((text, i) => (
+            {features.map((feature, i) => (
               <div
                 key={i}
                 className="flex items-center gap-5 rounded-2xl bg-white p-6"
               >
-                {/* Icon placeholder */}
-                <div className="h-24 w-24 shrink-0 rounded-2xl bg-gray-300" />
+                {/* Icon */}
+                <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-[#EFE1F9]">
+                  <Image
+                    src={feature.icon}
+                    alt={feature.title}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10"
+                  />
+                </div>
                 {/* Text */}
-                <p className="flex-1 text-base leading-relaxed text-text-secondary">
-                  {text}
-                </p>
+                <div className="flex-1">
+                  <p className="mb-1 font-bold text-text-primary">
+                    {feature.title}
+                  </p>
+                  <p className="text-sm leading-relaxed text-text-secondary">
+                    {feature.text}
+                  </p>
+                </div>
                 {/* Checkmark badge */}
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200">
-                  <Check className="h-5 w-5 text-white" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EFE1F9]">
+                  <Check className="h-5 w-5 text-[#7B4BA8]" />
                 </div>
               </div>
             ))}
