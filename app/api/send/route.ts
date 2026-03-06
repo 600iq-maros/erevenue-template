@@ -197,18 +197,20 @@ export async function POST(request: Request) {
 
     // Save lead directly to Supabase (shared DB with klienti)
     const projectId = process.env.PROJECT_ID;
-    if (projectId) {
+    if (projectId && process.env.DATABASE_URL) {
       try {
         const { prisma } = await import("@/lib/prisma");
-        await prisma.lead.create({
-          data: {
-            name,
-            email,
-            phone,
-            sourcePage: process.env.VERCEL_URL ?? "unknown",
-            projectId,
-          },
-        });
+        if (prisma) {
+          await prisma.lead.create({
+            data: {
+              name,
+              email,
+              phone,
+              sourcePage: process.env.VERCEL_URL ?? "unknown",
+              projectId,
+            },
+          });
+        }
       } catch (err) {
         console.error("Failed to save lead to database:", err);
       }

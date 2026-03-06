@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate || true && next build",
-    "postinstall": "test -f prisma/schema.prisma && prisma generate || echo 'Prisma schema not found, skipping generate'",
+    "build": "npx prisma generate || echo '[prisma] generate skipped'; next build",
+    "postinstall": "npx prisma generate || echo '[prisma] generate skipped'",
     "start": "next start",
     "lint": "eslint"
   },
