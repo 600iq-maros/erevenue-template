@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const projectId = process.env.PROJECT_ID;
     if (projectId) {
       try {
-        await prisma.lead.create({
+        await getPrisma().lead.create({
           data: {
             name,
             email,
