@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
-    "postinstall": "prisma generate",
+    "postinstall": "test -f prisma/schema.prisma && prisma generate || echo 'Prisma schema not found, skipping generate'",
     "start": "next start",
     "lint": "eslint"
   },
