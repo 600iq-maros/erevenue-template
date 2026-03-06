@@ -70,7 +70,11 @@ export default function Home() {
 
           {/* Main Headline */}
           <h1 className="mx-auto mb-6 max-w-3xl text-4xl font-extrabold leading-tight text-text-primary sm:text-5xl lg:text-[3.5rem] lg:leading-[1.15]">
-            Získajte kompletnú webstránku za 7 dní vďaka našemu systému ziskových webov
+            Získajte kompletnú webstránku
+            <br />
+            za 7 dní vďaka našemu
+            <br />
+            systému ziskových webov
           </h1>
 
           {/* Subheadline */}
