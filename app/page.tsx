@@ -28,7 +28,7 @@ export default function Home() {
       {/* ===== SECTION 1: HERO ===== */}
       <section className="relative overflow-hidden bg-white">
         {/* Purple glow effect */}
-        <div className="pointer-events-none absolute -bottom-20 left-1/2 h-[60%] w-[80%] -translate-x-1/2 rounded-[50%] bg-[#C9A0E8]/30 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[40%] w-full bg-gradient-to-t from-[#7B4BA8]/40 via-[#C9A0E8]/20 to-transparent" />
         <div className="mx-auto max-w-4xl px-6 pb-28 pt-14 text-center sm:pb-36 sm:pt-16">
           {/* Logo */}
           <div className="mb-10 flex items-center justify-center gap-2">
