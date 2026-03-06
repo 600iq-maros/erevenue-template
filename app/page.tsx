@@ -2,18 +2,20 @@ import { Monitor, Calendar, Check, Star, Rocket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+const CDN = "http://srv930691.hstgr.cloud:3002/uploads/root";
+
 const testimonials = [
   {
     text: "Dlho som hľadal niekoho, kto mi spraví web bez zbytočných rečí. Maroš a Tomáš to zvládli za pár dní – profesionálny dizajn, kontaktný formulár aj GDPR. Konečne mám web, za ktorý sa nehanbím poslať zákazníkom.",
     name: "Peter Kováč",
     role: "Majiteľ autoservisu",
-    avatar: "/avatars/person2.jpg",
+    avatar: `${CDN}/person2.jpg`,
   },
   {
     text: "Predtým som mala web, ktorý vyzeral ako z roku 2010. Po spolupráci s WebZaTýždeň sa mi ozvali prví noví klienti už týždeň po spustení. Navyše mi poslali video-návod, takže si viem sama meniť texty a fotky.",
     name: "Jana Nováková",
     role: "Kozmetička",
-    avatar: "/avatars/person3.jpg",
+    avatar: `${CDN}/person3.jpg`,
   },
 ];
 
@@ -21,22 +23,22 @@ const features = [
   {
     title: "100 % vlastníctvo webu a domény",
     text: "Žiadne skryté prenájmy ani držanie vás v šachu. Web je od prvého dňa váš majetok.",
-    icon: "/icons/vault.svg",
+    icon: `${CDN}/vault-6c5c364e.svg`,
   },
   {
     title: "Bezpečnosť a právna ochrana",
     text: "Nasadený SSL certifikát (zelený zámoček) a pripravená základná lišta pre GDPR/Cookies, aby ste sa vyhli zbytočným pokutám.",
-    icon: "/icons/shield-check.svg",
+    icon: `${CDN}/shield-check-3d8c7ba2.svg`,
   },
   {
     title: "Filter na zlých klientov",
     text: "Nasadený a otestovaný kontaktný formulár tak, aby ste z návštevníkov mohli okamžite budovať databázu potenciálnych zákazníkov.",
-    icon: "/icons/funnel.svg",
+    icon: `${CDN}/funnel-22729ab1.svg`,
   },
   {
     title: "Video-manuál na mieru",
     text: "Krátke video, kde vám ukážeme, ako si viete upraviť detaily web stránky, ako pridať fotky či referencie – bez toho, aby ste nám za zmeny platili.",
-    icon: "/icons/camera.svg",
+    icon: `${CDN}/camera-49e26148.svg`,
   },
 ];
 
@@ -146,7 +148,7 @@ export default function Home() {
           {/* Left Column — Profile Photo */}
           <div className="relative min-h-[600px] overflow-hidden rounded-3xl">
             <Image
-              src="/avatars/maros-tomas.webp"
+              src={`${CDN}/maros-tomas.webp`}
               alt="Maroš a Tomáš — WebZaTýždeň"
               fill
               className="object-cover object-top"
@@ -254,7 +256,7 @@ export default function Home() {
             {/* Overlapping Avatars */}
             <div className="flex items-center">
               <div className="flex -space-x-3">
-                {["/avatars/person1.jpg", "/avatars/person2.jpg", "/avatars/person3.jpg", "/avatars/person4.jpg"].map((src, i) => (
+                {[`${CDN}/person1.jpg`, `${CDN}/person2.jpg`, `${CDN}/person3.jpg`, `${CDN}/person4.jpg`].map((src, i) => (
                   <Image
                     key={i}
                     src={src}
