@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "eRevenue Template",
-  description: "Landing page template",
+  title: "Web Za Týždeň",
+  description: "Získajte kompletnú webstránku za 7 dní vďaka nášmu systému ziskových webov.",
 };
 
 export default function RootLayout({
